@@ -8,11 +8,19 @@ btnGenEl.addEventListener("click", () => {
     createPassword();
 });
 
+// Copy to clipboard
 copyIconEl.addEventListener("click", () => {
     // console.log("Button clicked");  // Test button click
-    copyPassword();
+    if(inputEl.value){
+        copyPassword();
+        alertContainerEl.classList.remove("active");
+        setTimeout(() => {
+            alertContainerEl.classList.add("active");
+        }, 2000);
+    }
 });
 
+// Create password
 function createPassword(){
     // console.log("Button clicked");  // Test button click
     const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+?><:{}[]";
@@ -25,9 +33,10 @@ function createPassword(){
         // console.log(randomNumber, password); // Test random number and password
     }
     inputEl.value = password;
-    alertContainerEl.innerText = password + "copied to clipboard!";
+    alertContainerEl.innerText = "Copied to clipboard!";
 }
 
+// Copy password to clipboard function
 function copyPassword(){
     // console.log("Button clicked");  // Test button click
     inputEl.select();
